@@ -1,0 +1,43 @@
+// main.c
+#include <stdio.h>
+#include "head.h"
+
+void main() {
+    int num=12;
+    factorial(num);
+    sumOfDigits(num); 
+}
+
+//fact.c
+#include<stdio.h>
+
+int factorial(int n) {
+    if (n == 0 || n == 1) {
+        printf("Factorial of %d is %d\n", n, 1);
+        return 1;
+    } else {
+        int result = n * factorial(n - 1);
+        printf("Factorial of %d is %d\n", n, result);
+        return result;
+    }
+}
+
+//sum.c
+#include<stdio.h>
+int sumOfDigits(int num) {
+    int sum = 0;
+    int originalNum = num;
+    
+    while (num != 0) {
+        int digit = num % 10;
+        sum += digit;
+        printf("Adding digit %d to the sum. Current sum: %d\n", digit, sum);
+        num /= 10;
+    } 
+    printf("Sum of digits of %d is: %d\n", originalNum, sum);
+}
+
+//head.h
+int factorial(int num);
+int sumOfDigits(int num);
+
