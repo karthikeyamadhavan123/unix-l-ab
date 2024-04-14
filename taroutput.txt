@@ -1,0 +1,15 @@
+file1.txt
+file1.txt
+awkoutput.txt
+awkoutput.txt
+awkoutput.txt
+awkoutput.txt
+0
+awkoutput.txt
+file1.txt
+awkoutput.txt
+-rw-rw-r-- student/student 172 2024-02-28 14:24 file1.txt
+-rw-rw-r-- student/student 172 2024-02-28 14:24 file1.txt
+-rw-rw-r-- student/student 342 2024-02-28 14:42 awkoutput.txt
+file1.txt
+awkoutput.txt

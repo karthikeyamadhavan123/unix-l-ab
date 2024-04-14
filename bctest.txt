@@ -1,0 +1,5 @@
+2+5;
+var =10*3
+var
+print var
+quit

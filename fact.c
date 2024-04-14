@@ -1,39 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
 
-#define ARRAY_SIZE 100
-
-void initializeArray(int *arr, int size) {
-    for (int i = 0; i < size; i++) {
-        arr[i] = i;
-    }
+int factorial(int n){
+  if(n==0 || n==1){
+    printf("Factorial of %d is %d\n",n,1);
+    return 1;
+  }else{
+    int result = n*factorial(n-1);
+    printf("Factorial of %d is %d\n",n,result);
+    return result;
+  }
 }
-
-void processArray(int *arr, int size) {
-    for (int i = 0; i <= size; i++) { // Intentional mistake: accessing one element beyond the array size
-        arr[i] *= 2;
-    }
-}
-
-void printArray(int *arr, int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
-
-int main() {
-    int *arr = (int *)malloc(ARRAY_SIZE * sizeof(int));
-    if (arr == NULL) {
-        printf("Memory allocation failed!\n");
-        return 1;
-    }
-
-    initializeArray(arr, ARRAY_SIZE);
-    processArray(arr, ARRAY_SIZE);
-    printArray(arr, ARRAY_SIZE);
-
-    free(arr);
-    return 0;
-}
-
+  
+  

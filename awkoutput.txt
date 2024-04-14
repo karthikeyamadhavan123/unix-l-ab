@@ -1,0 +1,46 @@
+422165 sridhar CSE 8
+422166 harsha CSE 9
+422167 chandu CSE 10
+422168 keerthi CSE 11
+422167 Navya CSE 12
+622127 Dileep ECE 13
+622145 Gnaneshwar ECE 14
+622132 MOksha ECE 15
+
+422165 8
+422166 9
+422167 10
+422168 11
+422167 12
+622127 13
+622145 14
+622132 15
+ 
+92
+8
+9
+10
+11
+12
+13
+14
+15
+
+No
+No
+No
+yes
+yes
+yes
+yes
+yes
+No
+64
+81
+100
+121
+144
+169
+196
+225
+0

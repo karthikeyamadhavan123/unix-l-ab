@@ -1,0 +1,239 @@
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep --help
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Search for PATTERNS in each FILE.
+Example: grep -i 'hello world' menu.h main.c
+PATTERNS can contain multiple patterns separated by newlines.
+
+Pattern selection and interpretation:
+  -E, --extended-regexp     PATTERNS are extended regular expressions
+  -F, --fixed-strings       PATTERNS are strings
+  -G, --basic-regexp        PATTERNS are basic regular expressions
+  -P, --perl-regexp         PATTERNS are Perl regular expressions
+  -e, --regexp=PATTERNS     use PATTERNS for matching
+  -f, --file=FILE           take PATTERNS from FILE
+  -i, --ignore-case         ignore case distinctions in patterns and data
+      --no-ignore-case      do not ignore case distinctions (default)
+  -w, --word-regexp         match only whole words
+  -x, --line-regexp         match only whole lines
+  -z, --null-data           a data line ends in 0 byte, not newline
+
+Miscellaneous:
+  -s, --no-messages         suppress error messages
+  -v, --invert-match        select non-matching lines
+  -V, --version             display version information and exit
+      --help                display this help text and exit
+
+Output control:
+  -m, --max-count=NUM       stop after NUM selected lines
+  -b, --byte-offset         print the byte offset with output lines
+  -n, --line-number         print line number with output lines
+      --line-buffered       flush output on every line
+  -H, --with-filename       print file name with output lines
+  -h, --no-filename         suppress the file name prefix on output
+      --label=LABEL         use LABEL as the standard input file name prefix
+  -o, --only-matching       show only nonempty parts of lines that match
+  -q, --quiet, --silent     suppress all normal output
+      --binary-files=TYPE   assume that binary files are TYPE;
+                            TYPE is 'binary', 'text', or 'without-match'
+  -a, --text                equivalent to --binary-files=text
+  -I                        equivalent to --binary-files=without-match
+  -d, --directories=ACTION  how to handle directories;
+                            ACTION is 'read', 'recurse', or 'skip'
+  -D, --devices=ACTION      how to handle devices, FIFOs and sockets;
+                            ACTION is 'read' or 'skip'
+  -r, --recursive           like --directories=recurse
+  -R, --dereference-recursive  likewise, but follow all symlinks
+      --include=GLOB        search only files that match GLOB (a file pattern)
+      --exclude=GLOB        skip files that match GLOB
+      --exclude-from=FILE   skip files that match any file pattern from FILE
+      --exclude-dir=GLOB    skip directories that match GLOB
+  -L, --files-without-match  print only names of FILEs with no selected lines
+  -l, --files-with-matches  print only names of FILEs with selected lines
+  -c, --count               print only a count of selected lines per FILE
+  -T, --initial-tab         make tabs line up (if needed)
+  -Z, --null                print 0 byte after FILE name
+
+Context control:
+  -B, --before-context=NUM  print NUM lines of leading context
+  -A, --after-context=NUM   print NUM lines of trailing context
+  -C, --context=NUM         print NUM lines of output context
+  -NUM                      same as --context=NUM
+      --group-separator=SEP  print SEP on line between matches with context
+      --no-group-separator  do not print separator for matches with context
+      --color[=WHEN],
+      --colour[=WHEN]       use markers to highlight the matching strings;
+                            WHEN is 'always', 'never', or 'auto'
+  -U, --binary              do not strip CR characters at EOL (MSDOS/Windows)
+
+When FILE is '-', read standard input.  With no FILE, read '.' if
+recursive, '-' otherwise.  With fewer than two FILEs, assume -h.
+Exit status is 0 if any line is selected, 1 otherwise;
+if any error occurs and -q is not given, the exit status is 2.
+
+Report bugs to: bug-grep@gnu.org
+GNU grep home page: <https://www.gnu.org/software/grep/>
+General help using GNU software: <https://www.gnu.org/gethelp/>
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -i "DILEE" Names.txt
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -c "Dileep" Names.txt
+1
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -l "Dil" Names.txt Numbers.txt
+Names.txt
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -w "sri" Names.txt
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -w "Sridhar" Names.txt
+Sridhar
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -o "Sri" Names.txt
+Sri
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -n "Dileep" Names.txt
+5:Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -v "Dileep" Names.txt
+Keerthi
+Sridhar
+Harsha
+Chandu
+Dirleep
+dIRleep
+dir
+dirleep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep "^Dileep" Names.txt
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep "Dileep$" Names.txt
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -e "Kee" -e "Sri" Names.txt
+Keerthi
+Sridhar
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -f Sorted.txt Names.txt
+Keerthi
+Sridhar
+Harsha
+Chandu
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -A1 "Kee" Names.txt
+Keerthi
+Sridhar
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -B1 "Dileep" Names.txt
+Chandu
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -C2 "Harsha" Names.txt
+Keerthi
+Sridhar
+Harsha
+Chandu
+Dileep
+sridhar@sridhar-VirtualBox:~/Desktop/scripts$ grep -iR "Srid" ./
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste --help
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste Numbers.txt Names.txt
+./paste.txt:2	Sridhar
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste -d "--" Number.txt Names.txt
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste -d "--" Numbers.txt Names.txt
+./paste.txt:2-Sridhar
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste -s Numbers.txt Names.txt
+./paste.txt:Keerthi	Sridhar	Harsha	Chandu	Dileep
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ paste -z Numbers.txt Names.txt
+./paste.txt:Sridhar
+./paste.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ 
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ tr --help
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr [a-z][A-Z]
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr [a-z] [A-Z]
+./tr.txt:SRIDHAR
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr ["r"] "s"
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr "r" "s"
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr -s " "
+./tr.txt:Sridhar
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt | tr -s "r"
+./tr.txt:Sridhar
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ tr -d "H"
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ tr -d H
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt|tr -d H
+./tr.txt:Sridhar
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Names.txt| tr -d [:upper:]
+./tr.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ 
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut --help
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -3 Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -b 3 Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -c 1 Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -d Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -d $ Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut --deliminator=@ Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut --delimiter=@ Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut --delimiter=DEL Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -d "r" -f 1 Names.txt
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -d "r" -f 1-2 Names.txt
+./cut.txt:Sridha
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut --complement -c 5 Names.txt
+./cut.txt:Sridar
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cut -d "r" -f 1,2 Names.txt --output-delimiter='@'
+./cut.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ 
+grep: ./.p1.sh.swp: binary file matches
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort --help
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -r Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -b Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -d Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -f Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -g Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -i Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -n Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -R Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -R Names.txt -r 
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -c Names.txt
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -C Names.txt
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -m Names.txt Numbers.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort Names.txt -o Sorted.txt
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ cat Sorted.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ sort -u Names.txt
+./sort.txt:Sridhar
+./sort.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ 
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq --help
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -c Names.txt
+./uniq.txt:      1 Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -d Names.txt
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -D Names.txt
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -f 2 Names.txt
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -i Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -s 5  Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -s 3  Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -s 3  Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -u Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -w 5  Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -w 3  Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -i Names.txt|uniq -w 3 Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ uniq -w 3 Names.txt
+./uniq.txt:Sridhar
+./uniq.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ 
+./uniq.txt:Sridhar
+./Names.txt:Sridhar
+./Sorted.txt:Sridhar
+./Tail.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ tail --help
+./Tail.txt:sridhar@sridhar-VirtualBox:~/Desktop/scripts$ tail -c 5 Names.txt
+
+
+Keerthi
+Sridhar
+Harsha
+Chandu
+Dileep
+Dirleep
+dIRleep
+dir
+dirleep
